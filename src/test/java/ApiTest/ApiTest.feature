@@ -3,7 +3,7 @@ Feature: Spotify Api Test
   Background:
 
     * url 'https://api.spotify.com'
-    * header Authorization = 'Bearer BQCTSys976_3RIRYTJtqZNRZefearXxZBbZswPyoQEk7E-Pq2eAtRHTgcOuJbyZ0UMErXD2fowv_DLZE7eQu7G9coOJYUarHGlliUn_oOlvCsTJMzfx6gb4O0qqA7pKe1gviTfjfEbcqBEbbLqWObmd_vucEekJGGqu4Fug035UhzJiJoFFfr_VhCuSbmlYygLC0xonm4kcspl1BoxMn5ngDHbRzZlZMjzj99gZEyJNUyWdpdhLnp50OUyJsDIymF7iWp0VDqPw3GBZcvszL26H4DA'
+    * header Authorization = 'Bearer BQDh8M0BffrYeS5r6Pk8bFMNMNl-qORzwIXbBOQz4hy2gpD7gNgWZo-AhfE99ReESPk1iy8Wbn6WXLpmc1w6egFaGmKkmzu9g_Q9TPBtH7IrVpvBcphYqQ_lOAWZQ2jCHSYa2ii7nB6w7zG6qmy0lHeqft5cXoxh98eTymInNhgrOYE3HnCaHnJpQO3oN3BF1KTjy17Da21x_yAWL93sYCQaS5N6qDbDHlB4vB5XaMAbGAaU9vH-VMBONAC9-Z1UzRWm8Iu0oU8cwBUVehXdK67Odw'
 
   @createAlbum
   Scenario: Album Add
@@ -21,7 +21,6 @@ Feature: Spotify Api Test
     Then status 201
     And print 'after get', response
     Then assert responseTime < 5000
-
   @searchSong
   Scenario: Song Search
 
