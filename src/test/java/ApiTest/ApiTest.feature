@@ -3,10 +3,10 @@ Feature: Spotify Api Test
   Background:
 
     * url 'https://api.spotify.com'
-    * header Authorization = 'Bearer BQC_qUFils6kB9n_BLIxRkHx7_-6gwATQ2v-wrlIyeHJZx06lTNGIM9iJOTYO6v5qcDa_Rlt-C8HtbHABmeVwP53ZQ-2DmBs-txi9rBcQk2CyJv5wDUrAnkQlZj6aKfvFNk7CYsq60tfs0d_LL0RtUdDiM33Mp2BCnfDll6pVvgfuTq-ENMTMDAE3W1vvRHNXEz_oXroZ3yhn14HtpngxlrsuwYH2mtnTp5WLjm5HPdwe2FJbxyqw3w6olZ9z1KJBVNl1DRjssMgmYpEUumfy8do_w'
+    * header Authorization = 'Bearer BQCTSys976_3RIRYTJtqZNRZefearXxZBbZswPyoQEk7E-Pq2eAtRHTgcOuJbyZ0UMErXD2fowv_DLZE7eQu7G9coOJYUarHGlliUn_oOlvCsTJMzfx6gb4O0qqA7pKe1gviTfjfEbcqBEbbLqWObmd_vucEekJGGqu4Fug035UhzJiJoFFfr_VhCuSbmlYygLC0xonm4kcspl1BoxMn5ngDHbRzZlZMjzj99gZEyJNUyWdpdhLnp50OUyJsDIymF7iWp0VDqPw3GBZcvszL26H4DA'
 
   @createAlbum
-  Scenario: Album Olusturma
+  Scenario: Album Add
     * def requestBody =
 """
 {
@@ -23,7 +23,7 @@ Feature: Spotify Api Test
     Then assert responseTime < 5000
 
   @searchSong
-  Scenario: Şarkı Aratma
+  Scenario: Song Search
 
     And path 'v1/search/'
     And param q = 'Bohemian Rhapsody'
@@ -32,8 +32,8 @@ Feature: Spotify Api Test
     Then status 200
     Then assert responseTime < 5000
 
-
-  Scenario: Albüme Şarkı Ekleme
+@songAdd
+  Scenario: Song Add
     * def petPostScenario = read('ApiTest.feature@createAlbum')
     * def petPostScenario1 = read('ApiTest.feature@searchSong')
     * def result = call petPostScenario
@@ -48,14 +48,10 @@ Feature: Spotify Api Test
     And path 'v1/playlists'
     And path petId
     And path '/tracks'
-    And param uris = uriId
+    And param uris = 'spotify:track:3z8h0TU7ReDPLIbEnYhWZb'
     And request requestBody
     And method Post
     Then status 201
     Then assert responseTime < 5000
 
-  Scenario: Albüme Şarkı Add
-    * def petPostScenario = read('ApiTest.feature@searchSong')
-    * def result = call petPostScenario
-    * def petId = result.response.id
 
